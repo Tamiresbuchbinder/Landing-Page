@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>My Box — Seja um Franqueado</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700;900&family=Barlow+Condensed:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --black: #0a0a0a;
+    --dark: #111111;
+    --card: #161616;
+    --orange: #7CB342;
+    --orange-light: #9CCC65;
+    --orange-glow: rgba(124,179,66,0.15);
+    --white: #FFFFFF;
+    --gray: #888888;
+    --gray-light: #cccccc;
+    --border: rgba(255,255,255,0.08);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Barlow', sans-serif;
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 5%;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 3px;
+    color: var(--white);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--orange); }
+  .nav-cta {
+    background: var(--orange);
+    color: var(--white);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 10px 24px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  }
+  .nav-cta:hover { background: var(--orange-light); transform: translateY(-1px); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 120px 5% 80px;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: 
+      linear-gradient(135deg, rgba(124,179,66,0.12) 0%, transparent 50%),
+      linear-gradient(to bottom, rgba(10,10,10,0.5) 0%, rgba(10,10,10,0.9) 100%),
+      url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1600&q=80') center/cover no-repeat;
+  }
+  .hero-noise {
+    position: absolute;
+    inset: 0;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-size: 200px;
+  }
+  .hero-accent {
+    position: absolute;
+    right: -80px; bottom: -80px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(124,179,66,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-content {
+    position: relative;
+    max-width: 760px;
+    animation: fadeUp 0.9s ease both;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(124,179,66,0.15);
+    border: 1px solid rgba(124,179,66,0.4);
+    color: var(--orange-light);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 0.78rem;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    padding: 7px 16px;
+    margin-bottom: 28px;
+    clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+  }
+  .hero-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--orange);
+    border-radius: 50%;
+    animation: pulse 1.5s infinite;
+  }
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3.5rem, 9vw, 7.5rem);
+    line-height: 0.92;
+    letter-spacing: 2px;
+    margin-bottom: 24px;
+  }
+  .hero h1 .accent { color: var(--orange); }
+  .hero p {
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    color: var(--gray-light);
+    font-weight: 300;
+    max-width: 560px;
+    margin-bottom: 40px;
+    line-height: 1.7;
+  }
+  .hero-buttons {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .btn-primary {
+    background: var(--orange);
+    color: var(--white);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 16px 36px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.25s;
+    clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+  }
+  .btn-primary:hover { background: var(--orange-light); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(124,179,66,0.4); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--white);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 15px 28px;
+    border: 1px solid rgba(255,255,255,0.25);
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.25s;
+  }
+  .btn-ghost:hover { border-color: var(--orange); color: var(--orange); }
+
+  .hero-stats {
+    position: absolute;
+    bottom: 48px; right: 5%;
+    display: flex;
+    gap: 40px;
+    animation: fadeUp 1.1s 0.3s ease both;
+  }
+  .stat-item { text-align: right; }
+  .stat-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.8rem;
+    line-height: 1;
+    color: var(--orange);
+  }
+  .stat-label {
+    font-size: 0.72rem;
+    color: var(--gray);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  /* ── TICKER ── */
+  .ticker-wrap {
+    background: var(--orange);
+    padding: 14px 0;
+    overflow: hidden;
+    position: relative;
+  }
+  .ticker-track {
+    display: flex;
+    width: max-content;
+    animation: ticker 28s linear infinite;
+  }
+  .ticker-item {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    padding: 0 48px;
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .ticker-item::before { content: '◆'; font-size: 0.5rem; opacity: 0.7; }
+
+  /* ── SECTIONS ── */
+  section { padding: 100px 5%; }
+
+  .section-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-label::after { content: ''; flex: 0 0 40px; height: 1px; background: var(--orange); opacity: 0.5; }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    line-height: 1;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+  }
+  .section-title .accent { color: var(--orange); }
+  .section-sub {
+    font-size: 1.05rem;
+    color: var(--gray-light);
+    font-weight: 300;
+    max-width: 580px;
+    line-height: 1.7;
+  }
+
+  /* ── SOBRE ── */
+  .sobre-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .sobre-img-wrap {
+    position: relative;
+  }
+  .sobre-img-wrap img {
+    width: 100%;
+    aspect-ratio: 4/5;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(20%);
+  }
+  .sobre-img-badge {
+    position: absolute;
+    bottom: -20px; right: -20px;
+    background: var(--orange);
+    padding: 20px 28px;
+    font-family: 'Bebas Neue', sans-serif;
+    text-align: center;
+  }
+  .sobre-img-badge .big { font-size: 3rem; line-height: 1; display: block; }
+  .sobre-img-badge .small { font-size: 0.7rem; letter-spacing: 2px; opacity: 0.85; }
+  .sobre-text { }
+  .sobre-text p {
+    color: var(--gray-light);
+    font-weight: 300;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin-bottom: 20px;
+  }
+  .sobre-features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 32px;
+  }
+  .feature-chip {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--gray-light);
+  }
+  .feature-chip::before {
+    content: '';
+    width: 8px; height: 8px;
+    background: var(--orange);
+    flex-shrink: 0;
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  }
+
+  /* ── POR QUE INVESTIR ── */
+  .invest-section { background: var(--dark); }
+  .invest-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 60px;
+  }
+  .invest-card {
+    background: var(--card);
+    padding: 40px 32px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+  .invest-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--orange);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+  .invest-card:hover { background: #1a1a1a; }
+  .invest-card:hover::before { transform: scaleX(1); }
+  .invest-icon {
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+    display: block;
+  }
+  .invest-card h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    color: var(--white);
+  }
+  .invest-card p {
+    font-size: 0.92rem;
+    color: var(--gray);
+    line-height: 1.65;
+    font-weight: 300;
+  }
+
+  /* ── NUMEROS ── */
+  .numeros-section {
+    text-align: center;
+    background: linear-gradient(135deg, #0f0f0f 0%, #111 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .numeros-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(124,179,66,0.07) 0%, transparent 70%);
+  }
+  .numeros-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin-top: 60px;
+    position: relative;
+  }
+  .numero-item {
+    padding: 50px 20px;
+    border-right: 1px solid var(--border);
+    position: relative;
+  }
+  .numero-item:last-child { border-right: none; }
+  .numero-value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    line-height: 1;
+    color: var(--orange);
+    margin-bottom: 10px;
+  }
+  .numero-desc {
+    font-size: 0.82rem;
+    color: var(--gray);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  /* ── CONCEITO ── */
+  .conceito-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    margin-top: 60px;
+  }
+  .conceito-img {
+    position: relative;
+    overflow: hidden;
+  }
+  .conceito-img img {
+    width: 100%;
+    height: 100%;
+    min-height: 480px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+  }
+  .conceito-img:hover img { transform: scale(1.04); }
+  .conceito-content {
+    background: var(--card);
+    padding: 60px 52px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .conceito-content h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+  }
+  .conceito-content p {
+    color: var(--gray-light);
+    font-weight: 300;
+    line-height: 1.8;
+    font-size: 1rem;
+    margin-bottom: 16px;
+  }
+  .conceito-list { margin-top: 28px; list-style: none; }
+  .conceito-list li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.95rem;
+    color: var(--gray-light);
+    font-weight: 400;
+  }
+  .conceito-list li:last-child { border-bottom: none; }
+  .conceito-list li span.icon {
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  /* ── MODALIDADES ── */
+  .modal-section { background: var(--dark); }
+  .modal-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 60px;
+  }
+  .modal-card {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 3/4;
+    cursor: default;
+  }
+  .modal-card img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+    filter: grayscale(30%) brightness(0.65);
+  }
+  .modal-card:hover img { transform: scale(1.06); filter: grayscale(0%) brightness(0.75); }
+  .modal-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 60%);
+  }
+  .modal-card-text {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 32px 28px;
+  }
+  .modal-card-text h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+  }
+  .modal-card-text p { font-size: 0.88rem; color: var(--gray-light); font-weight: 300; }
+  .modal-tag {
+    position: absolute;
+    top: 20px; left: 20px;
+    background: var(--orange);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    clip-path: polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%);
+  }
+
+  /* ── FUNDADORES ── */
+  .fundadores-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 60px;
+  }
+  .fundador-card {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 32px;
+    background: var(--card);
+    padding: 36px;
+    border: 1px solid var(--border);
+    align-items: start;
+    transition: border-color 0.3s;
+  }
+  .fundador-card:hover { border-color: rgba(124,179,66,0.35); }
+  .fundador-card img {
+    width: 180px;
+    height: 220px;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+    filter: grayscale(20%);
+  }
+  .fundador-info h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .fundador-role {
+    font-size: 0.78rem;
+    color: var(--orange);
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .fundador-info p {
+    font-size: 0.9rem;
+    color: var(--gray);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* ── PASSOS ── */
+  .passos-section { background: var(--dark); }
+  .passos-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin-top: 60px;
+    position: relative;
+  }
+  .passos-list::before {
+    content: '';
+    position: absolute;
+    top: 36px;
+    left: calc(12.5% + 20px);
+    right: calc(12.5% + 20px);
+    height: 1px;
+    background: linear-gradient(to right, var(--orange) 0%, rgba(255,92,0,0.2) 100%);
+  }
+  .passo-item {
+    padding: 0 24px;
+    text-align: center;
+    position: relative;
+  }
+  .passo-num {
+    width: 72px; height: 72px;
+    background: var(--orange);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 24px;
+    clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+    position: relative;
+    z-index: 1;
+  }
+  .passo-item h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .passo-item p { font-size: 0.88rem; color: var(--gray); line-height: 1.65; font-weight: 300; }
+
+  /* ── FORM ── */
+  .form-section {
+    background: var(--black);
+    position: relative;
+    overflow: hidden;
+  }
+  .form-section::before {
+    content: '';
+    position: absolute;
+    left: -100px; top: -100px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(124,179,66,0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .form-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .form-left { }
+  .form-left p {
+    color: var(--gray-light);
+    font-weight: 300;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin-bottom: 32px;
+  }
+  .form-benefits { list-style: none; }
+  .form-benefits li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.95rem;
+    color: var(--gray-light);
+  }
+  .form-benefits li::before {
+    content: '→';
+    color: var(--orange);
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .form-right {
+    background: var(--card);
+    padding: 48px 40px;
+    border: 1px solid var(--border);
+    position: relative;
+  }
+  .form-right::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(to right, var(--orange), var(--orange-light));
+  }
+  .form-right h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .form-right .form-sub {
+    font-size: 0.88rem;
+    color: var(--gray);
+    margin-bottom: 32px;
+  }
+  .form-group { margin-bottom: 16px; }
+  .form-group label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 7px;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--white);
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.95rem;
+    padding: 13px 16px;
+    outline: none;
+    transition: border-color 0.2s;
+    appearance: none;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--orange); }
+  .form-group select option { background: var(--dark); }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .form-check {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.8rem;
+    color: var(--gray);
+    margin: 16px 0 24px;
+    line-height: 1.5;
+  }
+  .form-check input { width: auto; flex-shrink: 0; margin-top: 3px; accent-color: var(--orange); }
+  .form-check a { color: var(--orange-light); }
+  .btn-submit {
+    width: 100%;
+    background: var(--orange);
+    color: var(--white);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 18px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s;
+    clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
+  }
+  .btn-submit:hover { background: var(--orange-light); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(124,179,66,0.4); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark);
+    border-top: 1px solid var(--border);
+    padding: 48px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 3px;
+    color: var(--white);
+    text-decoration: none;
+  }
+  .footer-logo span { color: var(--orange); }
+  .footer-links { display: flex; gap: 32px; flex-wrap: wrap; }
+  .footer-links a {
+    font-size: 0.8rem;
+    color: var(--gray);
+    text-decoration: none;
+    letter-spacing: 1px;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--orange); }
+  .footer-copy {
+    font-size: 0.78rem;
+    color: var(--gray);
+    width: 100%;
+    text-align: center;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(32px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%       { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .hero-stats { display: none; }
+    .sobre-grid, .conceito-wrap, .fundadores-grid, .form-wrap { grid-template-columns: 1fr; }
+    .invest-grid, .modal-grid, .numeros-grid, .passos-list { grid-template-columns: 1fr 1fr; }
+    .passos-list::before { display: none; }
+    .fundador-card { grid-template-columns: 1fr; }
+    .fundador-card img { width: 100%; height: 240px; }
+    .sobre-img-badge { right: 0; bottom: 0; }
+    .conceito-content { padding: 40px 32px; }
+  }
+  @media (max-width: 600px) {
+    .invest-grid, .modal-grid, .numeros-grid, .passos-list { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    nav .nav-cta { display: none; }
+    .hero h1 { font-size: 3.2rem; }
+    section { padding: 70px 5%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">MY<span>BOX</span></a>
+  <a href="#formulario" class="nav-cta">Quero ser franqueado</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-noise"></div>
+  <div class="hero-accent"></div>
+  <div class="hero-content">
+    <h1>A REDE QUE ESTÁ<br><span class="accent">DOMINANDO</span><br>O FITNESS</h1>
+    <p>Mais de 100 unidades, 50.000 alunos e uma marca em expansão acelerada. Seja parte da revolução fitness mais inovadora do Brasil.</p>
+    <div class="hero-buttons">
+      <a href="#formulario" class="btn-primary">Quero abrir minha unidade</a>
+      <a href="#sobre" class="btn-ghost">Saiba mais</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-number">+100</div>
+      <div class="stat-label">Unidades</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">24</div>
+      <div class="stat-label">Meses de retorno</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">40%</div>
+      <div class="stat-label">Lucratividade</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- SOBRE -->
+<section id="sobre">
+  <div class="sobre-grid">
+    <div class="sobre-img-wrap">
+      <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=800&q=80" alt="My Box Academia"/>
+      <div class="sobre-img-badge">
+        <span class="big">2016</span>
+        <span class="small">fundada em</span>
+      </div>
+    </div>
+    <div class="sobre-text">
+      <div class="section-label">Sobre a My Box</div>
+      <h2 class="section-title">UMA NOVA ERA<br><span class="accent">NO FITNESS</span></h2>
+      <p>Desde 2016, a My Box atua no segmento de atividades físicas, sempre à frente do mercado. Em menos de 5 anos, tornou-se uma das maiores redes de academias do Brasil.</p>
+      <p>Em 2025, iniciamos uma nova fase: uma verdadeira inovação no mundo fitness. Testamos, validamos e lançamos para o mercado uma tendência que promete transformar os próximos anos.</p>
+      <div class="sobre-features">
+        <div class="feature-chip">Metodologia própria validada</div>
+        <div class="feature-chip">Marca cristã com propósito</div>
+        <div class="feature-chip">Suporte total ao franqueado</div>
+        <div class="feature-chip">Múltiplas fontes de receita</div>
+        <div class="feature-chip">Expansão nacional acelerada</div>
+        <div class="feature-chip">Comunidade de +50mil alunos</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NÚMEROS -->
+<section class="numeros-section">
+  <div class="section-label" style="justify-content:center">Resultados reais</div>
+  <h2 class="section-title" style="text-align:center">OS NÚMEROS<br><span class="accent">FALAM POR SI</span></h2>
+  <div class="numeros-grid">
+    <div class="numero-item">
+      <div class="numero-value">+100</div>
+      <div class="numero-desc">Unidades pelo Brasil</div>
+    </div>
+    <div class="numero-item">
+      <div class="numero-value">+50K</div>
+      <div class="numero-desc">Alunos ativos</div>
+    </div>
+    <div class="numero-item">
+      <div class="numero-value">até 40%</div>
+      <div class="numero-desc">De lucratividade</div>
+    </div>
+    <div class="numero-item">
+      <div class="numero-value">24 meses</div>
+      <div class="numero-desc">Retorno estimado</div>
+    </div>
+  </div>
+</section>
+
+<!-- POR QUE INVESTIR -->
+<section class="invest-section" id="investir">
+  <div class="section-label">Diferenciais</div>
+  <h2 class="section-title">POR QUE INVESTIR<br><span class="accent">NA MY BOX?</span></h2>
+  <p class="section-sub">Uma oportunidade sólida, com marca consolidada, suporte completo e um mercado em franca expansão.</p>
+  <div class="invest-grid">
+    <div class="invest-card">
+      <span class="invest-icon">💰</span>
+      <h3>Alta Rentabilidade</h3>
+      <p>A lucratividade pode chegar até 40% ao mês, tornando o investimento altamente atrativo para empreendedores.</p>
+    </div>
+    <div class="invest-card">
+      <span class="invest-icon">⚡</span>
+      <h3>Rápido Retorno</h3>
+      <p>Retorno de investimento estimado em aproximadamente 24 meses — ideal para quem busca resultados de curto a médio prazo.</p>
+    </div>
+    <div class="invest-card">
+      <span class="invest-icon">📈</span>
+      <h3>Marca em Expansão</h3>
+      <p>Mais de 100 unidades no Brasil. Estabilidade, presença de mercado e crescimento acelerado.</p>
+    </div>
+    <div class="invest-card">
+      <span class="invest-icon">🏃</span>
+      <h3>Demanda Crescente</h3>
+      <p>O segmento fitness e estilo de vida saudável apresenta forte crescimento contínuo no Brasil.</p>
+    </div>
+    <div class="invest-card">
+      <span class="invest-icon">🛍️</span>
+      <h3>Múltiplas Receitas</h3>
+      <p>Mensalidades, Gympass, My Coffee, acessórios e roupas. Diversificação garante mais estabilidade financeira.</p>
+    </div>
+    <div class="invest-card">
+      <span class="invest-icon">✝️</span>
+      <h3>Rede com Propósito</h3>
+      <p>Uma marca cristã, guiada por princípios bíblicos, com uma comunidade forte e valores que criam pertencimento.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONCEITO -->
+<section>
+  <div class="section-label">Inovação</div>
+  <h2 class="section-title">ACADEMIA COM<br><span class="accent">CONCEITO DE SHOPPING</span></h2>
+  <div class="conceito-wrap">
+    <div class="conceito-img">
+      <img src="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?w=800&q=80" alt="My Box Conceito"/>
+    </div>
+    <div class="conceito-content">
+      <h3>Muito além<br>de uma academia</h3>
+      <p>A My Box é uma verdadeira revolução no mundo fitness, transformando o tempo dedicado à atividade física em uma experiência prazerosa e completa.</p>
+      <p>Um espaço onde as pessoas não apenas treinam, mas também se sentem à vontade, são atendidas com excelência e fazem parte de uma comunidade.</p>
+      <ul class="conceito-list">
+        <li><span class="icon">☕</span> My Coffee — café de qualidade antes ou depois do treino</li>
+        <li><span class="icon">📚</span> Área de Leitura — espaço para relaxar e se inspirar</li>
+        <li><span class="icon">🛒</span> Loja própria — acessórios e roupas exclusivas</li>
+        <li><span class="icon">🤝</span> Comunidade — ambiente acolhedor e motivador</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- MODALIDADES -->
+<section class="modal-section">
+  <div class="section-label">O que oferecemos</div>
+  <h2 class="section-title">MODALIDADES<br><span class="accent">EXCLUSIVAS</span></h2>
+  <div class="modal-grid">
+    <div class="modal-card">
+      <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=800&q=80" alt="Musculação"/>
+      <div class="modal-card-overlay"></div>
+      <span class="modal-tag">01</span>
+      <div class="modal-card-text">
+        <h3>Musculação</h3>
+        <p>Equipamentos modernos e ambiente motivador como você nunca presenciou antes.</p>
+      </div>
+    </div>
+    <div class="modal-card">
+      <img src="https://images.unsplash.com/photo-1599058917765-a780eda07a3e?w=800&q=80" alt="Cross Training"/>
+      <div class="modal-card-overlay"></div>
+      <span class="modal-tag">02</span>
+      <div class="modal-card-text">
+        <h3>Cross Training</h3>
+        <p>Metodologia própria testada e validada por mais de 1 milhão de alunos.</p>
+      </div>
+    </div>
+    <div class="modal-card">
+      <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=800&q=80" alt="Aulas Coletivas"/>
+      <div class="modal-card-overlay"></div>
+      <span class="modal-tag">03</span>
+      <div class="modal-card-text">
+        <h3>Aulas Coletivas</h3>
+        <p>Criando comunidade e gerando um ecossistema que abraça cada aluno.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FUNDADORES -->
+<section>
+  <div class="section-label">Quem fundou</div>
+  <h2 class="section-title">OS FUNDADORES<br><span class="accent">DA REDE</span></h2>
+  <div class="fundadores-grid">
+    <div class="fundador-card">
+      <img src="https://myboxoficial.com.br/img/daniel.jpeg" alt="Daniel Ambiel"/>
+      <div class="fundador-info">
+        <h3>Daniel Ambiel</h3>
+        <div class="fundador-role">Fundador</div>
+        <p>Formado em Educação Física e pós-graduado em Fisiologia do Exercício. Apaixonado pelo Cross Training, idealizou uma forma mais acessível para a prática do esporte, iniciando a primeira unidade em outubro de 2016.</p>
+      </div>
+    </div>
+    <div class="fundador-card">
+      <img src="https://myboxoficial.com.br/img/gabi.jpeg" alt="Gabriela Ambiel"/>
+      <div class="fundador-info">
+        <h3>Gabriela Ambiel</h3>
+        <div class="fundador-role">Co-fundadora</div>
+        <p>Formada em Direito e Life Coach (Master e Practitioner). Teve a vida transformada pelo Cross Training e atua com foco em mindset e transformação integral, unindo saúde física, mental e espiritual.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section class="passos-section">
+  <div class="section-label">Processo</div>
+  <h2 class="section-title">COMO SE TORNAR<br><span class="accent">UM FRANQUEADO</span></h2>
+  <p class="section-sub">Processo simples e transparente. Nossa equipe te acompanha em cada etapa.</p>
+  <div class="passos-list">
+    <div class="passo-item">
+      <div class="passo-num">01</div>
+      <h3>Preencha o formulário</h3>
+      <p>Envie suas informações e interesse. Nossa equipe entra em contato em até 24h.</p>
+    </div>
+    <div class="passo-item">
+      <div class="passo-num">02</div>
+      <h3>Reunião de apresentação</h3>
+      <p>Conheça detalhes do modelo de negócio, investimento e suporte oferecidos.</p>
+    </div>
+    <div class="passo-item">
+      <div class="passo-num">03</div>
+      <h3>Análise e aprovação</h3>
+      <p>Avaliamos juntos o melhor ponto comercial e realizamos a análise de viabilidade.</p>
+    </div>
+    <div class="passo-item">
+      <div class="passo-num">04</div>
+      <h3>Abertura da unidade</h3>
+      <p>Com suporte completo em treinamento, montagem e inauguração da sua My Box.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FORMULÁRIO -->
+<section class="form-section" id="formulario">
+  <div class="form-wrap">
+    <div class="form-left">
+      <div class="section-label">Sua oportunidade</div>
+      <h2 class="section-title">QUERO SER<br><span class="accent">FRANQUEADO</span></h2>
+      <p>Pronto para fazer parte da rede fitness que mais cresce no Brasil? Preencha o formulário e nossa equipe entrará em contato para apresentar todos os detalhes.</p>
+      <ul class="form-benefits">
+        <li>Suporte completo desde a abertura até a operação</li>
+        <li>Treinamento para você e sua equipe</li>
+        <li>Metodologia exclusiva e testada</li>
+        <li>Material de marketing e comunicação</li>
+        <li>Acesso ao sistema de gestão da rede</li>
+        <li>Comunidade de franqueados ativa</li>
+      </ul>
+    </div>
+    <div class="form-right">
+      <h3>Entre em contato</h3>
+      <p class="form-sub">Respondemos em até 24 horas úteis</p>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Nome completo</label>
+          <input type="text" placeholder="Seu nome"/>
+        </div>
+        <div class="form-group">
+          <label>E-mail</label>
+          <input type="email" placeholder="seu@email.com"/>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Telefone / WhatsApp</label>
+          <input type="tel" placeholder="(00) 00000-0000"/>
+        </div>
+        <div class="form-group">
+          <label>Cidade / Estado</label>
+          <input type="text" placeholder="São Paulo, SP"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Capital disponível para investimento</label>
+        <select>
+          <option value="" disabled selected>Selecione uma faixa</option>
+          <option>De R$ 200mil a R$ 400mil</option>
+          <option>Acima de R$ 400mil</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Mensagem (opcional)</label>
+        <textarea rows="3" placeholder="Conte um pouco sobre você ou sua expectativa..."></textarea>
+      </div>
+      <div class="form-check">
+        <input type="checkbox" id="termos"/>
+        <label for="termos">Concordo com os <a href="https://myboxoficial.com.br/termos" target="_blank">Termos de Uso</a> e <a href="https://myboxoficial.com.br/privacidade" target="_blank">Política de Privacidade</a></label>
+      </div>
+      <button class="btn-submit">Quero ser franqueado →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="footer-logo">MY<span>BOX</span></a>
+  <div class="footer-links">
+    <a href="https://myboxoficial.com.br/" target="_blank">Site oficial</a>
+    <a href="https://myboxoficial.com.br/termos" target="_blank">Termos de uso</a>
+    <a href="https://myboxoficial.com.br/privacidade" target="_blank">Privacidade</a>
+    <a href="mailto:unidade.mybox@gmail.com">Contato</a>
+  </div>
+  <p class="footer-copy">© 2025 My Box. Todos os direitos reservados. Academia com Conceito.</p>
+</footer>
+
+</body>
+</html>
